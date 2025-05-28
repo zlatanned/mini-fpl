@@ -19,8 +19,8 @@ type RegisterRequest struct {
 
 // LoginRequest expects username & password
 type LoginRequest struct {
-	Username string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	Username string `json:"username,alphanum,min=3,max=20" binding:"required"`
+	Password string `json:"password" binding:"required,min=6"`
 }
 
 // Secret key for JWT signing
