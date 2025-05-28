@@ -19,7 +19,7 @@ type RegisterRequest struct {
 
 // LoginRequest expects username & password
 type LoginRequest struct {
-	Username string `json:"username,alphanum,min=3,max=20" binding:"required"`
+	Username string `json:"username" binding:"required,alphanum,min=3,max=20"`
 	Password string `json:"password" binding:"required,min=6"`
 }
 
