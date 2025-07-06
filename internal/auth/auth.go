@@ -23,9 +23,6 @@ type LoginRequest struct {
 	Password string `json:"password" binding:"required"`
 }
 
-// Secret key for JWT signing
-var jwtSecret = []byte(configs.GetJWTSecret())
-
 var users = map[string]string{} // in-memory user store: username -> hashed password
 
 func Register(c *gin.Context) {
@@ -81,6 +78,9 @@ func Login(c *gin.Context) {
 		"exp":      time.Now().Add(time.Hour * 72).Unix(), // expires in 72 hours
 	})
 
+	
+	// Secret key for JWT signing
+	var jwtSecret = []byte(configs.GetJWTSecret())
 	tokenString, err := token.SignedString(jwtSecret)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "could not generate token"})
