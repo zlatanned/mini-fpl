@@ -1,10 +1,11 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "net/http"
-    "github.com/zlatanned/mini-fpl/internal/auth"
-    "github.com/zlatanned/mini-fpl/configs"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/zlatanned/mini-fpl/configs"
+	"github.com/zlatanned/mini-fpl/internal/auth"
 )
 
 func main() {
@@ -13,7 +14,7 @@ func main() {
 
     // Health check
     r.GET("/ping", func(c *gin.Context) {
-        c.JSON(http.StatusOK, gin.H{"message": "pong"})
+	    c.JSON(http.StatusOK, gin.H{"message": "pong"});
     });
 
     r.POST("/auth/register", auth.Register);
